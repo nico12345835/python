@@ -15,17 +15,12 @@ c=float(c) #même chose
 #continue le code à partir d'ici#
 #################################
 delta=b**2-4*a*c
-if delta <0:
-	print("il n'y a pas de racines a la fonction")
-elif delta==0:
-	x=(-b)/(2*a)
-	print("il y a une racine a cette fonction")
-	print(f"sa valeur est de: x={round (x,4)}")
-elif delta > 0:
-	print("il y a 2 racines a cette fonctions")
-    x1=(-b-sqrt(delta))/(2*a)
-    x2=(-b+sqrt(delta))/(2*a)
+if delta > 0:
+    x1=-b-sqrt(delta)/2*a
+    x2=-b+sqrt(delta)/2*a
     x1=round(x1 , 5)
     x2=round(x2 , 5)
     print(f"x1 = {x1}")
     print(f"x2 = {x2}")
+else:
+	print("il n'y a pas de racines a cette fonction")
