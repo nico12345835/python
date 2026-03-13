@@ -1,25 +1,16 @@
 mot="anniversaire"
-list_lettres_mot=[]
-for lettre in mot:
-    if lettre not in list_lettres_mot:
-        list_lettres_mot.append(lettre)
-tentatives_autorisees=len(list_lettres_mot)+3
-    
 list_propositions=[]
-for i in range(10):
+list_lettres_mot = list(mot)
+for i in range(12):
     for lettre in mot:
         if lettre in list_propositions :
-            print( lettre,end="")
+            print(lettre,end="")
         else:
-            print(" _",end="")
+            print( "_",end="")
     print("")
-    proposition=input("Faites une proposition de lettre ")
-    list_propositions.append(proposition)
-    if len(proposition)>1:
-        if proposition==mot:
-            print("tiéé un tigre")
-    if set(list_propositions).intersection(set(list_lettres_mot))==set(list_lettres_mot):
-        print("tiééé un tigre")
-        print(f"le mot etait bien : {mot}")
+    if set(list_lettres_mot).intersection(set(list_propositions)) == set(list_lettres_mot):
+        print("Bravo ! Vous avez trouvé le mot :", mot)
         break
-    
+    proposition=input("faites une proposition")
+    list_propositions.append(proposition)
+   
