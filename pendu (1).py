@@ -1,6 +1,5 @@
 mot="anniversaire"
 list_lettres_mot=[]
-#test update
 #on definit la liste de lettres du mot
 for lettre in mot:
     if lettre not in list_lettres_mot:
