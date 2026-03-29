@@ -1,3 +1,5 @@
+import math
+
 def menu():
     print("pour calculer l'aire d'un carré, tapez 1")
     print("pour calculer l'aire d'un triangle, tapez 2")
@@ -28,10 +30,16 @@ def aire_carre():
 def aire_triangle():
     base=input("quel est la base du triangle")
     base=float(base)
-    hauteur=input("quel est la base du triangle")
+    hauteur=input("quel est la hauteur du triangle")
     hauteur=float(base)
     aire=base*hauteur/2
     print(f"l'aire du triangle vaut : {aire}")
+
+def aire_cercle():
+    rayon=input("quel est le rayon du cercle?")
+    rayon=float(rayon)
+    aire=math.pi*rayon**2
+    print(f"l'aire du cercle vaut : {aire}")
 
 if __name__=="__main__":
     menu()
