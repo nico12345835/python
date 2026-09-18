@@ -1,38 +1,61 @@
+def demander_choix(message, choix_possibles):
+    choix=input(message)
+
+    while choix not in choix_possibles:
+        print("choix invalide")
+        choix=input(message)
+
+    return choix
+
+def demander_valeur(message):
+    return float(input(message))
+
+def convertir(valeur, facteur, unité_départ, unité_arrivé):
+    resultat = round(valeur * facteur, 2)
+    print(f"{valeur} {unité_départ} = {resultat} {unité_arrivé}")
+
+
+
+facteurs_kilometres = {
+    "miles": 1 / 1.6093445,
+    "mètres": 1000
+}
+
+facteurs_euro = {
+    "dollar": 1.15,
+    "livre": 0.86
+}
+
+facteurs_kilogrammes = {
+    "grammes":1000,
+    "livre":2.20462262
+}
+
 print("bienvenu dans le convertisseur d'unités")
-unité = input("que voulez vous convertir? (kilomètres, degrés, euro)")
-while unité not in ["kilomètres", "degrés", "euro"]:
-    print("veuillez répondre par kilomètres, degrés ou euro")
-    unité = input("que voulez vous convertir? (kilomètres, degrés, euro)")
+while True:
+    unité = demander_choix("que voulez vous convertir?(kilomètres, kilogrammes, euro ou quitter)", ["kilomètres", "kilogrammes", "euro", "quitter"])
+    if unité == "quitter":
+        print("au revoir")
+        break
 
+    elif unité == "kilomètres":
+        unitésecondaire = demander_choix("en quoi voulez vous converir? (mètres, miles)", ["mètres", "miles"])
+        kilomètres = demander_valeur("Combien de kilomètres ?")
+        facteur = facteurs_kilometres[unitésecondaire]
+        convertir(kilomètres, facteur, "kilomètres", unitésecondaire)
 
-def kilomètrestomiles():
-    kilomètres=input("combiens de kilomètres voulez vous convertir en miles ?")
-    kilomètres=float(kilomètres)
-    miles=kilomètres/1.6093445
-    miles=float(miles)
-    print(f"{kilomètres} kilomètres = {miles} miles")
+    elif unité == "euro":
+        unitésecondaire = demander_choix("en quoi voulez-vous convertir ? (dollar, livre)", ["dollar", "livre"])
+        euro = demander_valeur("combien d'euro ?")
+        facteur = facteurs_euro[unitésecondaire]
+        convertir(euro, facteur, "euro", unitésecondaire)
 
-def degréstofahrenheit():
-    degrés=input("combien de degrés voulez vous convertir en fahrenheit ?")
-    degrés=float(degrés)
-    fahrenheit=degrés*9/5+32
-    fahrenheit=float(fahrenheit)
-    print(f"{degrés} degrés = {fahrenheit} fahrenheit")
+    elif unité == "kilogrammes":
+        unitésecondaire = demander_choix("en quoi voulez-vous convertir ? (grammes, livre)", ["grammes", "livre"])
+        kilogrammes = demander_valeur("combien de kilogrammes ?")
+        facteur = facteurs_kilogrammes[unitésecondaire]
+        convertir(kilogrammes, facteur, "kilogrammes", unitésecondaire)
+        
 
-def eurotodollar():
-    euro=input("combien d'euro voulez vous convertir en dollar ?")
-    euro=float(euro)
-    dollar=euro*1.1464
-    dollar=float(dollar)
-    print(f"{euro} euro = {dollar} dollar")
-
-if unité == "kilomètres":
-    kilomètrestomiles()
-
-elif unité == "degrés":
-    degréstofahrenheit()
-
-elif unité == "euro":
-    eurotodollar()
 
 
