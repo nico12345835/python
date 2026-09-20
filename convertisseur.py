@@ -1,3 +1,4 @@
+#demander à l'utilisateur quelle unité il veut convertir
 def demander_choix(message, choix_possibles):
     choix=input(message)
 
@@ -7,13 +8,23 @@ def demander_choix(message, choix_possibles):
 
     return choix
 
+#demander à l'utilisateur la quantité de ce qu'il veut convertir
 def demander_valeur(message):
-    return float(input(message))
+    while True:
+        try:
+            return float(input(message))
+        except ValueError:
+            print("erreur: entre un nombre valide")
+        
 
+historique=[]
+#faire la conversion
 def convertir(valeur, facteur, unité_départ, unité_arrivé):
     resultat = round(valeur * facteur, 2)
-    print(f"{valeur} {unité_départ} = {resultat} {unité_arrivé}")
-
+    conversion = (f"{valeur} {unité_départ} = {resultat} {unité_arrivé}")
+    historique.append(conversion)
+    print(conversion)
+    print("historique", historique)
 
 
 facteurs_kilometres = {
@@ -43,7 +54,7 @@ while True:
         kilomètres = demander_valeur("Combien de kilomètres ?")
         facteur = facteurs_kilometres[unitésecondaire]
         convertir(kilomètres, facteur, "kilomètres", unitésecondaire)
-
+        
     elif unité == "euro":
         unitésecondaire = demander_choix("en quoi voulez-vous convertir ? (dollar, livre)", ["dollar", "livre"])
         euro = demander_valeur("combien d'euro ?")
